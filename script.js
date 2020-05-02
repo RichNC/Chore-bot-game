@@ -13,3 +13,17 @@ doorImage2.onclick = () => {
 doorImage3.onclick = () => {
   doorImage3.src = spaceDoorPath;
 }
+let numClosedDoors = 3;
+let openDoor1;
+let openDoor2;
+let openDoor3;
+randomChoreDoorGenerator = () => {
+  choreDoor = Math.floor(Math.random()*2)
+  if(choreDoor === 0) {
+
+  } else if(choreDoor === 1) {
+
+  } else {
+
+  }
+}
