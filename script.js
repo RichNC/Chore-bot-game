@@ -9,6 +9,7 @@ let openDoor1;
 let openDoor2;
 let openDoor3;
 let closedDoorPath = 'https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/closed_door.svg';
+let startButton = document.querySelector('#start')
 
 const isClicked = (door) => {
   if(door.src === closedDoorPath) {
@@ -21,25 +22,43 @@ const isClicked = (door) => {
 const playDoor = () => {
   numClosedDoors--;
   if(numClosedDoors === 0) {
-    gameOver();
+    gameOver('win');
   }
 }
 
-
-randomChoreDoorGenerator = () => {
-  choreDoor = Math.floor(Math.random()*2);
-  if(choreDoor === 0) {
-    openDoor1 = botDoorPath;
-    openDoor2 = beachDoorPath;
-    openDoor3 = spaceDoorPath;
-  } else if(choreDoor === 1) {
-    openDoor2 = botDoorPath;
-    openDoor3 = beachDoorPath;
-    openDoor1 = spaceDoorPath;
-  } else { (choreDoor === 2)
-    openDoor3 = botDoorPath;
-    openDoor1 = beachDoorPath;
-    openDoor2 = spaceDoorPath;
+const randomChoreDoorGenerator = () => {
+  choreDoor = Math.floor(Math.random() * 6);
+  switch (choreDoor) {
+    case 0:
+      openDoor1 = botDoorPath;
+      openDoor2 = beachDoorPath;
+      openDoor3 = spaceDoorPath;
+      break;
+    case 1:
+      openDoor1 = botDoorPath;
+      openDoor2 = spaceDoorPath;
+      openDoor3 = beachDoorPath;
+      break;
+    case 2:
+      openDoor2 = botDoorPath;
+      openDoor1 = beachDoorPath;
+      openDoor3 = spaceDoorPath;
+      break;
+    case 3:
+      openDoor2 = botDoorPath;
+      openDoor1 = spaceDoorPath;
+      openDoor3 = beachDoorPath;
+      break;
+    case 4:
+      openDoor3 = botDoorPath;
+      openDoor1 = beachDoorPath;
+      openDoor2 = spaceDoorPath;
+      break;
+    case 5:
+      openDoor3 = botDoorPath;
+      openDoor1 = spaceDoorPath;
+      openDoor2 = beachDoorPath;
+      break;
   }
 }
 
@@ -61,5 +80,11 @@ doorImage3.onclick = () => {
   if(!isClicked(doorImage3)) {
   doorImage3.src = openDoor3;
   playDoor();
+  }
+}
+
+const gameOver = (status) => {
+  if(status === 'win') {
+    startButton.innerHTML = 'You win! Play again?';
   }
 }
